@@ -1,0 +1,608 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    background: #050608;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    overflow: hidden;
+}
+
+
+/* =========================
+   TELAS
+========================= */
+
+.screen {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.hidden {
+    display: none !important;
+}
+
+
+/* =========================
+   MENU
+========================= */
+
+#episodeMenu {
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    background:
+        radial-gradient(
+            circle at 50% 20%,
+            rgba(80, 90, 110, 0.18),
+            transparent 40%
+        ),
+        linear-gradient(
+            180deg,
+            #080b10,
+            #030405
+        );
+
+    padding: 60px 25px;
+}
+
+
+/* LOGO */
+
+.logo {
+    text-align: center;
+
+    font-size: clamp(40px, 8vw, 90px);
+    font-weight: 900;
+    letter-spacing: 12px;
+
+    color: #e7e7e7;
+
+    text-shadow:
+        0 0 15px rgba(255,255,255,.15);
+}
+
+.logo span {
+    color: #a7b6c9;
+}
+
+.subtitle {
+    text-align: center;
+
+    margin-top: 10px;
+    margin-bottom: 60px;
+
+    font-size: 11px;
+    letter-spacing: 5px;
+
+    color: #777;
+}
+
+
+/* =========================
+   EPISÓDIOS
+========================= */
+
+.episodes {
+    width: min(900px, 95%);
+    margin: auto;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 18px;
+}
+
+.episode-card {
+    position: relative;
+
+    width: 100%;
+    min-height: 145px;
+
+    border: 1px solid rgba(255,255,255,.12);
+
+    background:
+        linear-gradient(
+            110deg,
+            rgba(30,35,43,.95),
+            rgba(9,11,14,.95)
+        );
+
+    color: white;
+
+    display: flex;
+    align-items: center;
+
+    text-align: left;
+
+    padding: 25px;
+
+    cursor: pointer;
+
+    transition:
+        transform .25s,
+        border .25s,
+        background .25s;
+
+    overflow: hidden;
+}
+
+.episode-card::after {
+    content: "";
+
+    position: absolute;
+
+    width: 200px;
+    height: 200px;
+
+    right: -100px;
+    top: -100px;
+
+    border-radius: 50%;
+
+    background: rgba(255,255,255,.04);
+}
+
+.episode-card.available:hover {
+    transform: translateY(-4px);
+
+    border-color: rgba(190,205,220,.6);
+
+    background:
+        linear-gradient(
+            110deg,
+            rgba(40,48,60,.95),
+            rgba(10,12,16,.95)
+        );
+}
+
+.episode-number {
+    width: 90px;
+
+    font-size: 50px;
+    font-weight: 900;
+
+    color: #aebaca;
+}
+
+.episode-info {
+    flex: 1;
+}
+
+.episode-info h2 {
+    font-size: 22px;
+    margin-bottom: 8px;
+}
+
+.episode-info p {
+    color: #777;
+    font-size: 14px;
+}
+
+.play-icon,
+.lock {
+    font-size: 24px;
+    opacity: .7;
+}
+
+.lock {
+    filter: grayscale(1);
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    text-align: center;
+
+    margin-top: 70px;
+
+    color: #444;
+
+    font-size: 11px;
+    letter-spacing: 3px;
+}
+
+
+/* =========================
+   CANVAS
+========================= */
+
+#animeCanvas {
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    background: black;
+}
+
+
+/* =========================
+   CINEMATIC OVERLAY
+========================= */
+
+#cinematicOverlay {
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            ellipse at center,
+            transparent 45%,
+            rgba(0,0,0,.65)
+        );
+
+    z-index: 2;
+}
+
+
+/* =========================
+   TÍTULO
+========================= */
+
+#episodeTitle {
+    position: absolute;
+
+    top: 40px;
+    left: 45px;
+
+    z-index: 5;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 6px;
+
+    opacity: 0;
+
+    transition: opacity 1s;
+}
+
+#episodeTitle span {
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: #aaa;
+}
+
+#episodeTitle strong {
+    font-size: 20px;
+    letter-spacing: 3px;
+}
+
+
+/* =========================
+   LEGENDAS
+========================= */
+
+#subtitleBox {
+    position: absolute;
+
+    z-index: 5;
+
+    left: 50%;
+    bottom: 11%;
+
+    transform: translateX(-50%);
+
+    width: min(900px, 90%);
+
+    text-align: center;
+
+    pointer-events: none;
+}
+
+#subtitleText {
+    display: inline-block;
+
+    background: rgba(0,0,0,.75);
+
+    padding: 10px 18px;
+
+    border-radius: 3px;
+
+    font-size: clamp(15px, 2vw, 22px);
+
+    line-height: 1.4;
+
+    text-shadow:
+        1px 1px 3px black;
+
+    opacity: 0;
+
+    transition: opacity .2s;
+}
+
+
+/* =========================
+   CONTROLES
+========================= */
+
+#controls {
+    position: absolute;
+
+    right: 25px;
+    top: 25px;
+
+    z-index: 10;
+
+    display: flex;
+
+    gap: 8px;
+}
+
+#controls button {
+    width: 42px;
+    height: 42px;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(255,255,255,.2);
+
+    background: rgba(0,0,0,.55);
+
+    color: white;
+
+    cursor: pointer;
+
+    backdrop-filter: blur(5px);
+
+    transition: .2s;
+}
+
+#controls button:hover {
+    background: rgba(255,255,255,.15);
+}
+
+
+/* =========================
+   START
+========================= */
+
+#startEpisode,
+#pausedScreen {
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 20;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(20,25,32,.5),
+            rgba(0,0,0,.94)
+        );
+}
+
+#startEpisode > div,
+#pausedScreen > div {
+    animation: appear 1s ease;
+}
+
+#startEpisode span {
+    font-size: 12px;
+
+    letter-spacing: 6px;
+
+    color: #aaa;
+}
+
+#startEpisode h1 {
+    margin: 15px 0 35px;
+
+    font-size: clamp(28px, 6vw, 65px);
+
+    letter-spacing: 5px;
+}
+
+#startEpisode button,
+#pausedScreen button {
+    display: block;
+
+    margin: 12px auto;
+
+    min-width: 220px;
+
+    padding: 14px 25px;
+
+    border: 1px solid rgba(255,255,255,.25);
+
+    background: rgba(255,255,255,.08);
+
+    color: white;
+
+    cursor: pointer;
+
+    font-weight: bold;
+
+    letter-spacing: 2px;
+
+    transition: .2s;
+}
+
+#startEpisode button:hover,
+#pausedScreen button:hover {
+    background: rgba(255,255,255,.18);
+}
+
+#startButton {
+    background: white !important;
+    color: black !important;
+}
+
+
+/* =========================
+   PAUSA
+========================= */
+
+#pausedScreen {
+    display: none;
+}
+
+#pausedScreen h1 {
+    font-size: 50px;
+
+    letter-spacing: 8px;
+
+    margin-bottom: 30px;
+}
+
+
+/* =========================
+   LOADING
+========================= */
+
+#loadingScreen {
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 30;
+
+    background: #020304;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 20px;
+}
+
+.loadingLogo {
+    font-size: 40px;
+    font-weight: 900;
+
+    letter-spacing: 10px;
+}
+
+.loadingBar {
+    width: min(400px, 70%);
+
+    height: 2px;
+
+    background: #222;
+}
+
+#loadingProgress {
+    height: 100%;
+
+    width: 0%;
+
+    background: white;
+
+    transition: width .1s linear;
+}
+
+#loadingScreen p {
+    font-size: 11px;
+
+    color: #666;
+
+    letter-spacing: 3px;
+}
+
+
+/* =========================
+   ANIMAÇÕES
+========================= */
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* =========================
+   CELULAR
+========================= */
+
+@media (max-width: 600px) {
+
+    #episodeMenu {
+        padding: 40px 15px;
+    }
+
+    .logo {
+        letter-spacing: 5px;
+    }
+
+    .subtitle {
+        letter-spacing: 2px;
+        margin-bottom: 35px;
+    }
+
+    .episode-card {
+        min-height: 110px;
+        padding: 18px;
+    }
+
+    .episode-number {
+        width: 65px;
+        font-size: 35px;
+    }
+
+    .episode-info h2 {
+        font-size: 16px;
+    }
+
+    .episode-info p {
+        font-size: 11px;
+    }
+
+    #episodeTitle {
+        top: 20px;
+        left: 20px;
+    }
+
+    #episodeTitle strong {
+        font-size: 13px;
+    }
+
+    #controls {
+        top: 15px;
+        right: 15px;
+    }
+
+    #controls button {
+        width: 38px;
+        height: 38px;
+    }
+}

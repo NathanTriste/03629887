@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GHYDAWAY</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- =========================
+         TELA DE EPISÓDIOS
+    ========================== -->
+    <section id="episodeMenu" class="screen">
+
+        <div class="logo">
+            <span>G</span>HYDAWAY
+        </div>
+
+        <p class="subtitle">UMA HISTÓRIA DE MAGIA, GUERRA E VINGANÇA</p>
+
+        <div class="episodes">
+
+            <button class="episode-card available" id="episode1">
+
+                <div class="episode-number">
+                    01
+                </div>
+
+                <div class="episode-info">
+                    <h2>O Caminho para Yalhes</h2>
+                    <p>O destino começa a se mover.</p>
+                </div>
+
+                <div class="play-icon">
+                    ▶
+                </div>
+
+            </button>
+
+            <button class="episode-card locked">
+                <div class="episode-number">
+                    02
+                </div>
+
+                <div class="episode-info">
+                    <h2>Em breve...</h2>
+                    <p>O próximo capítulo ainda não foi revelado.</p>
+                </div>
+
+                <div class="lock">
+                    🔒
+                </div>
+            </button>
+
+            <button class="episode-card locked">
+                <div class="episode-number">
+                    03
+                </div>
+
+                <div class="episode-info">
+                    <h2>Em breve...</h2>
+                    <p>O próximo capítulo ainda não foi revelado.</p>
+                </div>
+
+                <div class="lock">
+                    🔒
+                </div>
+            </button>
+
+        </div>
+
+        <footer>
+            GHYDAWAY © 2026
+        </footer>
+
+    </section>
+
+
+    <!-- =========================
+         TELA DO EPISÓDIO
+    ========================== -->
+    <section id="animeScreen" class="screen hidden">
+
+        <canvas id="animeCanvas"></canvas>
+
+        <div id="cinematicOverlay"></div>
+
+        <div id="episodeTitle">
+            <span>EPISÓDIO 01</span>
+            <strong>O CAMINHO PARA YALHES</strong>
+        </div>
+
+        <div id="subtitleBox">
+            <p id="subtitleText"></p>
+        </div>
+
+        <div id="loadingScreen">
+            <div class="loadingLogo">GHYDAWAY</div>
+            <div class="loadingBar">
+                <div id="loadingProgress"></div>
+            </div>
+            <p>Preparando episódio...</p>
+        </div>
+
+        <div id="controls">
+
+            <button id="pauseButton">
+                ❚❚
+            </button>
+
+            <button id="muteButton">
+                🔊
+            </button>
+
+            <button id="backButton">
+                ✕
+            </button>
+
+        </div>
+
+        <div id="startEpisode">
+            <div>
+                <span>EPISÓDIO 01</span>
+                <h1>O CAMINHO PARA YALHES</h1>
+
+                <button id="startButton">
+                    ▶ COMEÇAR
+                </button>
+
+                <button id="returnButton">
+                    VOLTAR
+                </button>
+            </div>
+        </div>
+
+        <div id="pausedScreen">
+
+            <div>
+                <h1>PAUSADO</h1>
+
+                <button id="resumeButton">
+                    CONTINUAR
+                </button>
+
+                <button id="pauseBackButton">
+                    VOLTAR AOS EPISÓDIOS
+                </button>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
