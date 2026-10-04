@@ -2,9 +2,12 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, user-scalable=no"
+    >
 
-    <title>GHYDAWAY — O Caminho para Yalhes</title>
+    <title>GhydAnimate</title>
 
     <link rel="stylesheet" href="./style.css">
 </head>
@@ -12,216 +15,377 @@
 <body>
 
     <!-- =========================
-         MENU PRINCIPAL
+         MENU
     ========================== -->
 
-    <main id="menuScreen" class="screen menu-screen">
+    <section id="homeScreen" class="home-screen">
 
-        <div class="menu-background"></div>
+        <div class="home-content">
 
-        <div class="menu-content">
-
-            <div class="logo-area">
-                <p class="logo-small">UMA HISTÓRIA DE</p>
-                <h1>GHYDAWAY</h1>
-                <p class="logo-subtitle">
-                    Onde a mana decide quem sobrevive.
-                </p>
+            <div class="logo">
+                <span>2D ANIMATION STUDIO</span>
+                <h1>GhydAnimate</h1>
+                <p>Desenhe. Articule. Anime.</p>
             </div>
 
-            <div class="episode-list">
+            <button id="createButton" class="main-button">
+                🎬 CRIAR ANIMAÇÃO
+            </button>
 
-                <button id="episode1" class="episode-card">
+            <button id="loadButton" class="secondary-home-button">
+                💾 CARREGAR PROJETO
+            </button>
 
-                    <div class="episode-number">
-                        EP. 01
-                    </div>
-
-                    <div class="episode-info">
-                        <h2>O CAMINHO PARA YALHES</h2>
-                        <p>
-                            Um jovem desconhecido se aproxima do país
-                            mais poderoso de Ghydaway.
-                        </p>
-                    </div>
-
-                    <div class="play-symbol">
-                        ▶
-                    </div>
-
-                </button>
-
-
-                <button class="episode-card locked" disabled>
-
-                    <div class="episode-number">
-                        EP. 02
-                    </div>
-
-                    <div class="episode-info">
-                        <h2>EM BREVE</h2>
-                        <p>
-                            Continue a história para desbloquear.
-                        </p>
-                    </div>
-
-                    <div class="lock-symbol">
-                        🔒
-                    </div>
-
-                </button>
-
-
-                <button class="episode-card locked" disabled>
-
-                    <div class="episode-number">
-                        EP. 03
-                    </div>
-
-                    <div class="episode-info">
-                        <h2>EM BREVE</h2>
-                        <p>
-                            Continue a história para desbloquear.
-                        </p>
-                    </div>
-
-                    <div class="lock-symbol">
-                        🔒
-                    </div>
-
-                </button>
-
-            </div>
-
-            <p class="menu-footer">
-                GHYDAWAY © 2026
+            <p class="version">
+                V1.0
             </p>
 
         </div>
 
-    </main>
+    </section>
 
 
     <!-- =========================
-         TELA DO ANIME
+         EDITOR
     ========================== -->
 
-    <main id="animeScreen" class="screen anime-screen hidden">
+    <section id="editor" class="editor hidden">
 
-        <canvas id="animeCanvas"></canvas>
+        <!-- BARRA SUPERIOR -->
 
+        <header class="topbar">
 
-        <!-- TÍTULO DO EPISÓDIO -->
+            <div class="brand">
+                <strong>GhydAnimate</strong>
+                <span>V1.0</span>
+            </div>
 
-        <div id="episodeTitle" class="episode-title">
+            <div class="top-actions">
 
-            <span>EPISÓDIO 01</span>
+                <button id="undoButton" title="Desfazer">
+                    ↶
+                </button>
 
-            <h1>
-                O CAMINHO PARA YALHES
-            </h1>
+                <button id="redoButton" title="Refazer">
+                    ↷
+                </button>
 
-        </div>
+                <button id="saveButton" title="Salvar">
+                    💾
+                </button>
 
+                <button id="fullscreenButton" title="Tela inteira">
+                    ⛶
+                </button>
 
-        <!-- LEGENDA -->
-
-        <div id="subtitleBox" class="subtitle-box">
-
-            <p id="subtitleText"></p>
-
-        </div>
-
-
-        <!-- CONTROLES -->
-
-        <div class="controls">
-
-            <button id="pauseButton" title="Pausar">
-                ❚❚
-            </button>
-
-            <button id="muteButton" title="Som">
-                🔊
-            </button>
-
-            <button id="backButton" title="Voltar">
-                ✕
-            </button>
-
-        </div>
-
-
-        <!-- TELA INICIAL DO EPISÓDIO -->
-
-        <div id="startEpisode" class="episode-overlay">
-
-            <div class="overlay-content">
-
-                <span>EPISÓDIO 01</span>
-
-                <h1>
-                    O CAMINHO PARA YALHES
-                </h1>
-
-                <p>
-                    Uma história de Ghydaway.
-                </p>
-
-                <button id="startButton">
-                    ▶ COMEÇAR
+                <button id="backHomeButton" title="Menu">
+                    ✕
                 </button>
 
             </div>
 
+        </header>
+
+
+        <!-- ÁREA PRINCIPAL -->
+
+        <div class="workspace">
+
+
+            <!-- FERRAMENTAS -->
+
+            <aside class="toolbar">
+
+                <button
+                    class="tool active"
+                    data-tool="draw"
+                    title="Desenhar"
+                >
+                    🖌️
+                    <span>Desenhar</span>
+                </button>
+
+                <button
+                    class="tool"
+                    data-tool="erase"
+                    title="Borracha"
+                >
+                    🧹
+                    <span>Borracha</span>
+                </button>
+
+                <button
+                    class="tool"
+                    data-tool="joint"
+                    title="Articulação"
+                >
+                    🦴
+                    <span>Articulação</span>
+                </button>
+
+                <button
+                    class="tool"
+                    data-tool="move"
+                    title="Mover"
+                >
+                    🖐️
+                    <span>Mover</span>
+                </button>
+
+                <button
+                    class="tool"
+                    data-tool="select"
+                    title="Selecionar"
+                >
+                    🔲
+                    <span>Selecionar</span>
+                </button>
+
+                <div class="tool-separator"></div>
+
+                <button
+                    id="clearButton"
+                    class="tool danger"
+                    title="Limpar"
+                >
+                    🗑️
+                    <span>Limpar</span>
+                </button>
+
+            </aside>
+
+
+            <!-- CANVAS -->
+
+            <main class="canvas-area">
+
+                <div class="canvas-toolbar">
+
+                    <div class="canvas-tools-left">
+
+                        <button id="gridButton">
+                            ⊞ Grade
+                        </button>
+
+                        <button id="onionButton">
+                            👻 Onion Skin
+                        </button>
+
+                        <button id="captureButton">
+                            🎥 Área de captura
+                        </button>
+
+                    </div>
+
+                    <div class="canvas-info">
+
+                        <span id="currentFrameLabel">
+                            FRAME 0
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div id="canvasContainer" class="canvas-container">
+
+                    <canvas id="animationCanvas"></canvas>
+
+                    <div
+                        id="captureBox"
+                        class="capture-box hidden"
+                    >
+
+                        <div class="capture-label">
+                            ÁREA DE EXPORTAÇÃO
+                        </div>
+
+                        <div class="resize-handle"></div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- CONFIGURAÇÕES DO PINCEL -->
+
+                <div class="brush-settings">
+
+                    <label>
+                        Tamanho
+
+                        <input
+                            id="brushSize"
+                            type="range"
+                            min="1"
+                            max="40"
+                            value="5"
+                        >
+
+                        <span id="brushSizeLabel">
+                            5px
+                        </span>
+                    </label>
+
+                    <label>
+                        Cor
+
+                        <input
+                            id="brushColor"
+                            type="color"
+                            value="#ffffff"
+                        >
+                    </label>
+
+                </div>
+
+            </main>
+
+
+            <!-- PAINEL DIREITO -->
+
+            <aside class="right-panel">
+
+                <div class="panel-section">
+
+                    <div class="panel-title">
+                        CAMADAS
+
+                        <button id="addLayerButton">
+                            +
+                        </button>
+                    </div>
+
+                    <div id="layersList" class="layers-list">
+
+                        <div class="layer active">
+                            <span>👁</span>
+                            <strong>Desenho</strong>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="panel-section">
+
+                    <div class="panel-title">
+                        ARTICULAÇÕES
+                    </div>
+
+                    <div class="joint-info">
+
+                        <p id="jointInfo">
+                            Nenhuma articulação selecionada.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </aside>
+
         </div>
 
 
-        <!-- PAUSADO -->
+        <!-- =========================
+             TIMELINE
+        ========================== -->
 
-        <div id="pausedScreen" class="episode-overlay hidden">
+        <footer class="timeline">
 
-            <div class="overlay-content">
+            <div class="timeline-controls">
 
-                <span>EPISÓDIO PAUSADO</span>
-
-                <h1>
-                    GHYDAWAY
-                </h1>
-
-                <button id="resumeButton">
-                    ▶ CONTINUAR
+                <button id="firstFrameButton">
+                    ⏮
                 </button>
 
-                <button id="pausedBackButton" class="secondary-button">
-                    VOLTAR AO MENU
+                <button id="previousFrameButton">
+                    ◀
+                </button>
+
+                <button
+                    id="playButton"
+                    class="play-button"
+                >
+                    ▶
+                </button>
+
+                <button id="nextFrameButton">
+                    ▶
+                </button>
+
+                <button id="lastFrameButton">
+                    ⏭
+                </button>
+
+                <button id="addFrameButton">
+                    ＋ FRAME
+                </button>
+
+                <button id="deleteFrameButton">
+                    − FRAME
                 </button>
 
             </div>
 
-        </div>
 
+            <div class="timeline-main">
 
-        <!-- CARREGANDO -->
+                <div class="frame-number">
+                    <span>FRAME</span>
+                </div>
 
-        <div id="loadingScreen" class="episode-overlay hidden">
-
-            <div class="loading-content">
-
-                <div class="loader"></div>
-
-                <p>
-                    CARREGANDO GHYDAWAY...
-                </p>
+                <div
+                    id="timelineFrames"
+                    class="timeline-frames"
+                ></div>
 
             </div>
 
-        </div>
 
-    </main>
+            <div class="timeline-settings">
+
+                <label>
+                    FPS
+
+                    <input
+                        id="fpsInput"
+                        type="number"
+                        min="1"
+                        max="60"
+                        value="24"
+                    >
+                </label>
+
+                <label>
+                    Duração
+
+                    <span id="durationLabel">
+                        12 frames
+                    </span>
+                </label>
+
+            </div>
+
+        </footer>
+
+    </section>
 
 
-    <script src="script.js"></script>
+    <!-- =========================
+         MODAL DE INFORMAÇÃO
+    ========================== -->
+
+    <div
+        id="message"
+        class="message hidden"
+    ></div>
+
+
+    <script src="./script.js"></script>
 
 </body>
 </html>

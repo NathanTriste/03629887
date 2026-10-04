@@ -10,8 +10,7 @@ body {
     height: 100%;
     overflow: hidden;
 
-    background: #050507;
-
+    background: #08090c;
     color: white;
 
     font-family:
@@ -20,8 +19,13 @@ body {
         sans-serif;
 }
 
-button {
+button,
+input {
     font-family: inherit;
+}
+
+button {
+    cursor: pointer;
 }
 
 .hidden {
@@ -30,268 +34,112 @@ button {
 
 
 /* =====================================
-   TELAS
+   HOME
 ===================================== */
 
-.screen {
+.home-screen {
     width: 100vw;
     height: 100vh;
-    position: relative;
-}
 
-
-/* =====================================
-   MENU
-===================================== */
-
-.menu-screen {
-    overflow-y: auto;
-    overflow-x: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     background:
         radial-gradient(
             circle at center,
-            #202027 0%,
-            #0d0d12 45%,
-            #030304 100%
+            #20242d 0%,
+            #0c0e12 45%,
+            #050608 100%
         );
 }
 
-.menu-background {
-    position: fixed;
-
-    inset: 0;
-
-    background:
-        linear-gradient(
-            120deg,
-            transparent 0%,
-            rgba(255,255,255,0.025) 50%,
-            transparent 100%
-        );
-
-    pointer-events: none;
-}
-
-.menu-content {
-    position: relative;
-
-    width: min(900px, 92%);
-
-    min-height: 100%;
-
-    margin: auto;
-
-    padding: 70px 0 40px;
+.home-content {
+    width: min(700px, 90%);
 
     display: flex;
-
     flex-direction: column;
-
     align-items: center;
-}
 
-
-/* =====================================
-   LOGO
-===================================== */
-
-.logo-area {
     text-align: center;
-
-    margin-bottom: 60px;
 }
 
-.logo-small {
-    color: #999;
+.logo span {
+    color: #777;
 
     font-size: 12px;
 
-    letter-spacing: 6px;
-
-    margin-bottom: 12px;
+    letter-spacing: 5px;
 }
 
-.logo-area h1 {
-    font-size: clamp(45px, 9vw, 100px);
+.logo h1 {
+    margin-top: 15px;
 
-    letter-spacing: 12px;
+    font-size: clamp(45px, 9vw, 90px);
 
-    font-weight: 900;
-
-    line-height: 1;
-
-    text-shadow:
-        0 0 25px rgba(255,255,255,0.15);
+    letter-spacing: -3px;
 }
 
-.logo-subtitle {
-    margin-top: 18px;
+.logo p {
+    margin-top: 15px;
 
-    color: #777;
-
-    font-size: 14px;
-
-    letter-spacing: 2px;
-}
-
-
-/* =====================================
-   EPISÓDIOS
-===================================== */
-
-.episode-list {
-    width: 100%;
-
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 18px;
-}
-
-.episode-card {
-    width: 100%;
-
-    min-height: 130px;
-
-    border: 1px solid #29292f;
-
-    background:
-        linear-gradient(
-            100deg,
-            #111116,
-            #09090d
-        );
-
-    color: white;
-
-    display: flex;
-
-    align-items: center;
-
-    text-align: left;
-
-    padding: 25px;
-
-    cursor: pointer;
-
-    transition:
-        transform 0.25s ease,
-        border-color 0.25s ease,
-        background 0.25s ease;
-
-    position: relative;
-
-    overflow: hidden;
-}
-
-.episode-card::before {
-    content: "";
-
-    position: absolute;
-
-    left: 0;
-    top: 0;
-    bottom: 0;
-
-    width: 4px;
-
-    background: white;
-
-    transform: scaleY(0);
-
-    transition: transform 0.25s ease;
-}
-
-.episode-card:hover {
-    transform: translateX(8px);
-
-    border-color: #666;
-
-    background:
-        linear-gradient(
-            100deg,
-            #1a1a21,
-            #0c0c11
-        );
-}
-
-.episode-card:hover::before {
-    transform: scaleY(1);
-}
-
-.episode-number {
-    width: 100px;
-
-    color: #777;
-
-    font-size: 14px;
+    color: #888;
 
     letter-spacing: 3px;
 }
 
-.episode-info {
-    flex: 1;
-}
+.main-button {
+    margin-top: 60px;
 
-.episode-info h2 {
-    font-size: 20px;
+    width: 280px;
+
+    padding: 18px;
+
+    border: none;
+
+    background: white;
+
+    color: black;
+
+    font-size: 15px;
+
+    font-weight: bold;
 
     letter-spacing: 2px;
 
-    margin-bottom: 8px;
+    transition: 0.2s;
 }
 
-.episode-info p {
-    color: #888;
+.main-button:hover {
+    transform: scale(1.04);
 
-    font-size: 14px;
-
-    line-height: 1.5;
+    background: #ddd;
 }
 
-.play-symbol,
-.lock-symbol {
-    font-size: 25px;
+.secondary-home-button {
+    margin-top: 15px;
 
-    margin-left: 20px;
+    width: 280px;
 
-    opacity: 0.6;
+    padding: 15px;
+
+    border: 1px solid #333;
+
+    background: transparent;
+
+    color: #999;
+
+    transition: 0.2s;
 }
 
-.locked {
-    cursor: not-allowed;
+.secondary-home-button:hover {
+    border-color: #777;
 
-    opacity: 0.35;
+    color: white;
 }
 
-.locked:hover {
-    transform: none;
-
-    background:
-        linear-gradient(
-            100deg,
-            #111116,
-            #09090d
-        );
-
-    border-color: #29292f;
-}
-
-.locked:hover::before {
-    transform: scaleY(0);
-}
-
-
-/* =====================================
-   FOOTER
-===================================== */
-
-.menu-footer {
-    margin-top: auto;
-
-    padding-top: 50px;
+.version {
+    margin-top: 50px;
 
     color: #444;
 
@@ -302,404 +150,800 @@ button {
 
 
 /* =====================================
-   ANIME
+   EDITOR
 ===================================== */
 
-.anime-screen {
-    position: fixed;
-
-    inset: 0;
-
-    background: black;
-}
-
-#animeCanvas {
-    position: absolute;
-
-    inset: 0;
-
-    width: 100%;
-    height: 100%;
-
-    display: block;
-
-    background: black;
-}
-
-
-/* =====================================
-   TÍTULO
-===================================== */
-
-.episode-title {
-    position: absolute;
-
-    top: 9%;
-
-    left: 50%;
-
-    transform: translateX(-50%);
-
-    width: 90%;
-
-    text-align: center;
-
-    pointer-events: none;
-
-    opacity: 0;
-
-    transition: opacity 1.5s ease;
-
-    text-shadow:
-        0 2px 10px black,
-        0 0 20px black;
-}
-
-.episode-title span {
-    display: block;
-
-    color: #aaa;
-
-    font-size: 13px;
-
-    letter-spacing: 5px;
-
-    margin-bottom: 12px;
-}
-
-.episode-title h1 {
-    font-size: clamp(25px, 5vw, 55px);
-
-    letter-spacing: 5px;
-}
-
-
-/* =====================================
-   LEGENDAS
-===================================== */
-
-.subtitle-box {
-    position: absolute;
-
-    left: 50%;
-
-    bottom: 8%;
-
-    transform: translateX(-50%);
-
-    width: min(900px, 88%);
-
-    min-height: 55px;
+.editor {
+    width: 100vw;
+    height: 100vh;
 
     display: flex;
+    flex-direction: column;
 
-    justify-content: center;
+    background: #0b0c0f;
+}
 
+
+/* =====================================
+   TOPBAR
+===================================== */
+
+.topbar {
+    height: 58px;
+
+    flex-shrink: 0;
+
+    display: flex;
     align-items: center;
+    justify-content: space-between;
 
-    pointer-events: none;
+    padding: 0 15px;
 
-    text-align: center;
+    background: #111318;
 
-    padding: 15px 25px;
-
-    opacity: 0;
-
-    transition: opacity 0.25s ease;
-
-    text-shadow:
-        0 2px 5px black,
-        0 0 10px black;
+    border-bottom: 1px solid #252830;
 }
 
-.subtitle-box p {
-    font-size: clamp(16px, 2vw, 24px);
-
-    line-height: 1.4;
-
-    font-weight: 500;
-}
-
-
-/* =====================================
-   CONTROLES
-===================================== */
-
-.controls {
-    position: absolute;
-
-    right: 25px;
-
-    top: 25px;
-
+.brand {
     display: flex;
+    align-items: center;
 
     gap: 10px;
-
-    z-index: 20;
 }
 
-.controls button {
-    width: 42px;
-    height: 42px;
-
-    border: 1px solid rgba(255,255,255,0.25);
-
-    border-radius: 50%;
-
-    background: rgba(0,0,0,0.55);
-
-    color: white;
-
-    cursor: pointer;
-
-    transition:
-        background 0.2s ease,
-        transform 0.2s ease;
+.brand strong {
+    font-size: 16px;
 }
 
-.controls button:hover {
-    background: rgba(255,255,255,0.15);
+.brand span {
+    color: #555;
 
-    transform: scale(1.05);
+    font-size: 10px;
 }
 
-
-/* =====================================
-   OVERLAYS
-===================================== */
-
-.episode-overlay {
-    position: absolute;
-
-    inset: 0;
-
-    z-index: 10;
-
+.top-actions {
     display: flex;
 
-    align-items: center;
-
-    justify-content: center;
-
-    text-align: center;
-
-    background:
-        radial-gradient(
-            circle,
-            rgba(0,0,0,0.55),
-            rgba(0,0,0,0.9)
-        );
+    gap: 6px;
 }
 
-.overlay-content {
-    width: min(700px, 90%);
+.top-actions button {
+    width: 38px;
+    height: 38px;
 
-    animation: fadeIn 1s ease;
+    border: 1px solid #292c34;
+
+    background: #17191e;
+
+    color: #ccc;
+
+    border-radius: 5px;
 }
 
-.overlay-content > span {
-    color: #aaa;
-
-    font-size: 12px;
-
-    letter-spacing: 5px;
-}
-
-.overlay-content h1 {
-    margin-top: 18px;
-
-    font-size: clamp(30px, 6vw, 70px);
-
-    letter-spacing: 5px;
-}
-
-.overlay-content p {
-    margin-top: 20px;
-
-    color: #888;
-
-    font-size: 15px;
-}
-
-.overlay-content button {
-    margin-top: 35px;
-
-    min-width: 190px;
-
-    padding: 15px 25px;
-
-    border: 1px solid white;
-
-    background: white;
-
-    color: black;
-
-    font-weight: bold;
-
-    letter-spacing: 2px;
-
-    cursor: pointer;
-
-    transition:
-        background 0.2s ease,
-        color 0.2s ease,
-        transform 0.2s ease;
-}
-
-.overlay-content button:hover {
-    background: transparent;
+.top-actions button:hover {
+    background: #252932;
 
     color: white;
-
-    transform: scale(1.04);
-}
-
-.secondary-button {
-    display: block;
-
-    margin-left: auto;
-
-    margin-right: auto;
-
-    background: transparent !important;
-
-    border-color: #444 !important;
-
-    color: #999 !important;
-
-    font-size: 11px;
 }
 
 
 /* =====================================
-   LOADING
+   WORKSPACE
 ===================================== */
 
-.loading-content {
+.workspace {
+    flex: 1;
+
+    min-height: 0;
+
+    display: flex;
+}
+
+
+/* =====================================
+   TOOLBAR
+===================================== */
+
+.toolbar {
+    width: 75px;
+
+    flex-shrink: 0;
+
     display: flex;
 
     flex-direction: column;
 
     align-items: center;
 
-    gap: 25px;
+    padding: 10px 5px;
+
+    gap: 5px;
+
+    background: #111318;
+
+    border-right: 1px solid #252830;
 }
 
-.loading-content p {
+.tool {
+    width: 62px;
+
+    min-height: 58px;
+
+    border: 1px solid transparent;
+
+    background: transparent;
+
     color: #777;
+
+    border-radius: 5px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 5px;
+}
+
+.tool span {
+    font-size: 9px;
+}
+
+.tool:hover {
+    background: #191c22;
+
+    color: #ccc;
+}
+
+.tool.active {
+    background: #252932;
+
+    border-color: #444;
+
+    color: white;
+}
+
+.tool.danger:hover {
+    color: #ff6666;
+}
+
+.tool-separator {
+    width: 50px;
+
+    height: 1px;
+
+    background: #292c33;
+
+    margin: 5px 0;
+}
+
+
+/* =====================================
+   CANVAS AREA
+===================================== */
+
+.canvas-area {
+    flex: 1;
+
+    min-width: 0;
+
+    min-height: 0;
+
+    display: flex;
+
+    flex-direction: column;
+
+    background: #08090c;
+}
+
+.canvas-toolbar {
+    height: 42px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 0 10px;
+
+    background: #0f1115;
+
+    border-bottom: 1px solid #20232a;
+}
+
+.canvas-tools-left {
+    display: flex;
+
+    gap: 6px;
+}
+
+.canvas-toolbar button {
+    border: 1px solid #292c33;
+
+    background: #15171c;
+
+    color: #888;
+
+    padding: 6px 10px;
+
+    border-radius: 4px;
+
+    font-size: 11px;
+}
+
+.canvas-toolbar button:hover {
+    color: white;
+
+    border-color: #555;
+}
+
+.canvas-info {
+    color: #666;
+
+    font-size: 11px;
+
+    letter-spacing: 2px;
+}
+
+
+/* =====================================
+   CANVAS
+===================================== */
+
+.canvas-container {
+    position: relative;
+
+    flex: 1;
+
+    min-height: 0;
+
+    overflow: hidden;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background:
+        linear-gradient(
+            45deg,
+            #101217 25%,
+            transparent 25%
+        ),
+        linear-gradient(
+            -45deg,
+            #101217 25%,
+            transparent 25%
+        ),
+        linear-gradient(
+            45deg,
+            transparent 75%,
+            #101217 75%
+        ),
+        linear-gradient(
+            -45deg,
+            transparent 75%,
+            #101217 75%
+        );
+
+    background-size: 30px 30px;
+
+    background-position:
+        0 0,
+        0 15px,
+        15px -15px,
+        -15px 0;
+}
+
+#animationCanvas {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    touch-action: none;
+
+    cursor: crosshair;
+}
+
+
+/* =====================================
+   CAPTURE
+===================================== */
+
+.capture-box {
+    position: absolute;
+
+    left: 15%;
+
+    top: 15%;
+
+    width: 70%;
+
+    height: 70%;
+
+    border: 2px dashed #ffffff;
+
+    pointer-events: none;
+}
+
+.capture-label {
+    position: absolute;
+
+    top: -25px;
+
+    left: 0;
+
+    background: #fff;
+
+    color: #000;
+
+    padding: 4px 7px;
+
+    font-size: 9px;
+
+    letter-spacing: 1px;
+}
+
+.resize-handle {
+    position: absolute;
+
+    width: 16px;
+
+    height: 16px;
+
+    right: -8px;
+
+    bottom: -8px;
+
+    background: white;
+
+    border-radius: 50%;
+}
+
+
+/* =====================================
+   BRUSH SETTINGS
+===================================== */
+
+.brush-settings {
+    height: 40px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 25px;
+
+    padding: 0 15px;
+
+    background: #101216;
+
+    border-top: 1px solid #20232a;
+
+    color: #888;
+
+    font-size: 11px;
+}
+
+.brush-settings label {
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+}
+
+.brush-settings input[type="range"] {
+    width: 100px;
+}
+
+.brush-settings input[type="color"] {
+    width: 30px;
+    height: 25px;
+
+    border: none;
+
+    background: transparent;
+}
+
+
+/* =====================================
+   RIGHT PANEL
+===================================== */
+
+.right-panel {
+    width: 220px;
+
+    flex-shrink: 0;
+
+    background: #111318;
+
+    border-left: 1px solid #252830;
+
+    overflow-y: auto;
+}
+
+.panel-section {
+    border-bottom: 1px solid #252830;
+}
+
+.panel-title {
+    height: 40px;
+
+    padding: 0 12px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    color: #888;
+
+    font-size: 10px;
+
+    letter-spacing: 2px;
+}
+
+.panel-title button {
+    border: none;
+
+    background: transparent;
+
+    color: #aaa;
+
+    font-size: 20px;
+}
+
+.layers-list {
+    padding-bottom: 10px;
+}
+
+.layer {
+    height: 38px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 0 12px;
+
+    color: #999;
 
     font-size: 12px;
 
-    letter-spacing: 4px;
+    cursor: pointer;
 }
 
-.loader {
-    width: 45px;
+.layer:hover,
+.layer.active {
+    background: #1c1f25;
+
+    color: white;
+}
+
+.joint-info {
+    padding: 15px;
+
+    color: #666;
+
+    font-size: 11px;
+
+    line-height: 1.5;
+}
+
+
+/* =====================================
+   TIMELINE
+===================================== */
+
+.timeline {
+    height: 190px;
+
+    flex-shrink: 0;
+
+    background: #101216;
+
+    border-top: 1px solid #292c33;
+
+    display: flex;
+
+    flex-direction: column;
+}
+
+.timeline-controls {
     height: 45px;
 
-    border: 3px solid #333;
+    flex-shrink: 0;
 
-    border-top-color: white;
+    display: flex;
 
+    align-items: center;
+
+    gap: 5px;
+
+    padding: 5px 10px;
+
+    border-bottom: 1px solid #252830;
+}
+
+.timeline-controls button {
+    height: 30px;
+
+    min-width: 32px;
+
+    padding: 0 8px;
+
+    border: 1px solid #292c33;
+
+    background: #17191e;
+
+    color: #999;
+
+    border-radius: 4px;
+
+    font-size: 11px;
+}
+
+.timeline-controls button:hover {
+    color: white;
+
+    background: #24272e;
+}
+
+.timeline-controls .play-button {
+    width: 45px;
+
+    background: #eee;
+
+    color: black;
+
+    font-weight: bold;
+}
+
+.timeline-controls .play-button:hover {
+    background: white;
+}
+
+.timeline-main {
+    flex: 1;
+
+    min-height: 0;
+
+    display: flex;
+
+    overflow: hidden;
+}
+
+.frame-number {
+    width: 75px;
+
+    flex-shrink: 0;
+
+    border-right: 1px solid #252830;
+
+    display: flex;
+
+    align-items: flex-start;
+
+    justify-content: center;
+
+    padding-top: 10px;
+
+    color: #555;
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
+}
+
+.timeline-frames {
+    flex: 1;
+
+    overflow-x: auto;
+
+    overflow-y: hidden;
+
+    display: flex;
+
+    align-items: flex-start;
+
+    padding: 10px;
+}
+
+.frame {
+    width: 45px;
+
+    height: 70px;
+
+    flex-shrink: 0;
+
+    border-right: 1px solid #292c33;
+
+    border-bottom: 1px solid #292c33;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    cursor: pointer;
+
+    position: relative;
+}
+
+.frame-number-label {
+    font-size: 9px;
+
+    color: #555;
+
+    margin-bottom: 10px;
+}
+
+.frame-content {
+    width: 27px;
+
+    height: 27px;
+
+    border: 1px solid #333;
+
+    background: #17191e;
+
+    border-radius: 3px;
+}
+
+.frame.has-content .frame-content {
+    background: #aaa;
+
+    border-color: #ccc;
+}
+
+.frame.keyframe .frame-content {
     border-radius: 50%;
 
-    animation: spin 0.8s linear infinite;
+    background: white;
+}
+
+.frame.active {
+    background: #252932;
+
+    box-shadow:
+        inset 0 -2px 0 white;
+}
+
+.timeline-settings {
+    height: 40px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 25px;
+
+    padding: 0 12px;
+
+    border-top: 1px solid #252830;
+
+    color: #777;
+
+    font-size: 10px;
+}
+
+.timeline-settings label {
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+}
+
+.timeline-settings input {
+    width: 50px;
+
+    padding: 4px;
+
+    background: #181a20;
+
+    border: 1px solid #292c33;
+
+    color: white;
 }
 
 
 /* =====================================
-   ANIMAÇÕES
+   MENSAGEM
 ===================================== */
 
-@keyframes spin {
-    to {
-        transform: rotate(360deg);
-    }
-}
+.message {
+    position: fixed;
 
-@keyframes fadeIn {
-    from {
-        opacity: 0;
+    left: 50%;
 
-        transform: translateY(15px);
-    }
+    bottom: 220px;
 
-    to {
-        opacity: 1;
+    transform: translateX(-50%);
 
-        transform: translateY(0);
-    }
+    z-index: 100;
+
+    padding: 12px 20px;
+
+    border: 1px solid #555;
+
+    background: rgba(10, 11, 14, 0.95);
+
+    color: white;
+
+    border-radius: 5px;
+
+    font-size: 12px;
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,0.4);
 }
 
 
 /* =====================================
-   CELULAR
+   MOBILE
 ===================================== */
 
-@media (max-width: 600px) {
+@media (max-width: 800px) {
 
-    .menu-content {
-        padding-top: 50px;
+    .right-panel {
+        display: none;
     }
 
-    .logo-area {
-        margin-bottom: 40px;
+    .toolbar {
+        width: 58px;
     }
 
-    .logo-area h1 {
-        letter-spacing: 6px;
+    .tool {
+        width: 50px;
     }
 
-    .logo-subtitle {
-        font-size: 11px;
+    .tool span {
+        display: none;
     }
 
-    .episode-card {
-        min-height: 110px;
-
-        padding: 18px;
+    .timeline {
+        height: 160px;
     }
 
-    .episode-number {
-        width: 65px;
+    .canvas-toolbar button {
+        padding: 5px;
 
-        font-size: 11px;
+        font-size: 9px;
     }
 
-    .episode-info h2 {
-        font-size: 14px;
+    .brush-settings {
+        gap: 10px;
 
-        letter-spacing: 1px;
+        font-size: 9px;
     }
 
-    .episode-info p {
-        font-size: 11px;
+    .brush-settings input[type="range"] {
+        width: 70px;
     }
 
-    .play-symbol,
-    .lock-symbol {
-        font-size: 18px;
+    .brand strong {
+        font-size: 13px;
     }
 
-    .controls {
-        top: 15px;
-
-        right: 15px;
+    .top-actions button {
+        width: 32px;
+        height: 32px;
     }
 
-    .controls button {
-        width: 38px;
-        height: 38px;
-    }
-
-    .subtitle-box {
-        bottom: 7%;
-
-        width: 92%;
-    }
-
-    .subtitle-box p {
-        font-size: 15px;
-    }
 }
