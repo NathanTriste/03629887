@@ -8,25 +8,20 @@ html,
 body {
     width: 100%;
     height: 100%;
-}
-
-body {
-    background: #050608;
-    color: white;
-    font-family: Arial, Helvetica, sans-serif;
     overflow: hidden;
+
+    background: #050507;
+
+    color: white;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
 }
 
-
-/* =========================
-   TELAS
-========================= */
-
-.screen {
-    position: fixed;
-    inset: 0;
-    width: 100%;
-    height: 100%;
+button {
+    font-family: inherit;
 }
 
 .hidden {
@@ -34,94 +29,145 @@ body {
 }
 
 
-/* =========================
-   MENU
-========================= */
+/* =====================================
+   TELAS
+===================================== */
 
-#episodeMenu {
+.screen {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+}
+
+
+/* =====================================
+   MENU
+===================================== */
+
+.menu-screen {
     overflow-y: auto;
     overflow-x: hidden;
 
     background:
         radial-gradient(
-            circle at 50% 20%,
-            rgba(80, 90, 110, 0.18),
-            transparent 40%
-        ),
+            circle at center,
+            #202027 0%,
+            #0d0d12 45%,
+            #030304 100%
+        );
+}
+
+.menu-background {
+    position: fixed;
+
+    inset: 0;
+
+    background:
         linear-gradient(
-            180deg,
-            #080b10,
-            #030405
+            120deg,
+            transparent 0%,
+            rgba(255,255,255,0.025) 50%,
+            transparent 100%
         );
 
-    padding: 60px 25px;
+    pointer-events: none;
 }
 
+.menu-content {
+    position: relative;
 
-/* LOGO */
+    width: min(900px, 92%);
 
-.logo {
-    text-align: center;
+    min-height: 100%;
 
-    font-size: clamp(40px, 8vw, 90px);
-    font-weight: 900;
-    letter-spacing: 12px;
-
-    color: #e7e7e7;
-
-    text-shadow:
-        0 0 15px rgba(255,255,255,.15);
-}
-
-.logo span {
-    color: #a7b6c9;
-}
-
-.subtitle {
-    text-align: center;
-
-    margin-top: 10px;
-    margin-bottom: 60px;
-
-    font-size: 11px;
-    letter-spacing: 5px;
-
-    color: #777;
-}
-
-
-/* =========================
-   EPISÓDIOS
-========================= */
-
-.episodes {
-    width: min(900px, 95%);
     margin: auto;
 
+    padding: 70px 0 40px;
+
     display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+}
+
+
+/* =====================================
+   LOGO
+===================================== */
+
+.logo-area {
+    text-align: center;
+
+    margin-bottom: 60px;
+}
+
+.logo-small {
+    color: #999;
+
+    font-size: 12px;
+
+    letter-spacing: 6px;
+
+    margin-bottom: 12px;
+}
+
+.logo-area h1 {
+    font-size: clamp(45px, 9vw, 100px);
+
+    letter-spacing: 12px;
+
+    font-weight: 900;
+
+    line-height: 1;
+
+    text-shadow:
+        0 0 25px rgba(255,255,255,0.15);
+}
+
+.logo-subtitle {
+    margin-top: 18px;
+
+    color: #777;
+
+    font-size: 14px;
+
+    letter-spacing: 2px;
+}
+
+
+/* =====================================
+   EPISÓDIOS
+===================================== */
+
+.episode-list {
+    width: 100%;
+
+    display: flex;
+
     flex-direction: column;
 
     gap: 18px;
 }
 
 .episode-card {
-    position: relative;
-
     width: 100%;
-    min-height: 145px;
 
-    border: 1px solid rgba(255,255,255,.12);
+    min-height: 130px;
+
+    border: 1px solid #29292f;
 
     background:
         linear-gradient(
-            110deg,
-            rgba(30,35,43,.95),
-            rgba(9,11,14,.95)
+            100deg,
+            #111116,
+            #09090d
         );
 
     color: white;
 
     display: flex;
+
     align-items: center;
 
     text-align: left;
@@ -131,49 +177,58 @@ body {
     cursor: pointer;
 
     transition:
-        transform .25s,
-        border .25s,
-        background .25s;
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        background 0.25s ease;
+
+    position: relative;
 
     overflow: hidden;
 }
 
-.episode-card::after {
+.episode-card::before {
     content: "";
 
     position: absolute;
 
-    width: 200px;
-    height: 200px;
+    left: 0;
+    top: 0;
+    bottom: 0;
 
-    right: -100px;
-    top: -100px;
+    width: 4px;
 
-    border-radius: 50%;
+    background: white;
 
-    background: rgba(255,255,255,.04);
+    transform: scaleY(0);
+
+    transition: transform 0.25s ease;
 }
 
-.episode-card.available:hover {
-    transform: translateY(-4px);
+.episode-card:hover {
+    transform: translateX(8px);
 
-    border-color: rgba(190,205,220,.6);
+    border-color: #666;
 
     background:
         linear-gradient(
-            110deg,
-            rgba(40,48,60,.95),
-            rgba(10,12,16,.95)
+            100deg,
+            #1a1a21,
+            #0c0c11
         );
 }
 
+.episode-card:hover::before {
+    transform: scaleY(1);
+}
+
 .episode-number {
-    width: 90px;
+    width: 100px;
 
-    font-size: 50px;
-    font-weight: 900;
+    color: #777;
 
-    color: #aebaca;
+    font-size: 14px;
+
+    letter-spacing: 3px;
 }
 
 .episode-info {
@@ -181,45 +236,82 @@ body {
 }
 
 .episode-info h2 {
-    font-size: 22px;
+    font-size: 20px;
+
+    letter-spacing: 2px;
+
     margin-bottom: 8px;
 }
 
 .episode-info p {
-    color: #777;
+    color: #888;
+
     font-size: 14px;
+
+    line-height: 1.5;
 }
 
-.play-icon,
-.lock {
-    font-size: 24px;
-    opacity: .7;
+.play-symbol,
+.lock-symbol {
+    font-size: 25px;
+
+    margin-left: 20px;
+
+    opacity: 0.6;
 }
 
-.lock {
-    filter: grayscale(1);
+.locked {
+    cursor: not-allowed;
+
+    opacity: 0.35;
+}
+
+.locked:hover {
+    transform: none;
+
+    background:
+        linear-gradient(
+            100deg,
+            #111116,
+            #09090d
+        );
+
+    border-color: #29292f;
+}
+
+.locked:hover::before {
+    transform: scaleY(0);
 }
 
 
-/* =========================
+/* =====================================
    FOOTER
-========================= */
+===================================== */
 
-footer {
-    text-align: center;
+.menu-footer {
+    margin-top: auto;
 
-    margin-top: 70px;
+    padding-top: 50px;
 
     color: #444;
 
     font-size: 11px;
+
     letter-spacing: 3px;
 }
 
 
-/* =========================
-   CANVAS
-========================= */
+/* =====================================
+   ANIME
+===================================== */
+
+.anime-screen {
+    position: fixed;
+
+    inset: 0;
+
+    background: black;
+}
 
 #animeCanvas {
     position: absolute;
@@ -235,374 +327,379 @@ footer {
 }
 
 
-/* =========================
-   CINEMATIC OVERLAY
-========================= */
-
-#cinematicOverlay {
-    position: absolute;
-
-    inset: 0;
-
-    pointer-events: none;
-
-    background:
-        radial-gradient(
-            ellipse at center,
-            transparent 45%,
-            rgba(0,0,0,.65)
-        );
-
-    z-index: 2;
-}
-
-
-/* =========================
+/* =====================================
    TÍTULO
-========================= */
+===================================== */
 
-#episodeTitle {
+.episode-title {
     position: absolute;
 
-    top: 40px;
-    left: 45px;
-
-    z-index: 5;
-
-    display: flex;
-    flex-direction: column;
-
-    gap: 6px;
-
-    opacity: 0;
-
-    transition: opacity 1s;
-}
-
-#episodeTitle span {
-    font-size: 11px;
-    letter-spacing: 4px;
-    color: #aaa;
-}
-
-#episodeTitle strong {
-    font-size: 20px;
-    letter-spacing: 3px;
-}
-
-
-/* =========================
-   LEGENDAS
-========================= */
-
-#subtitleBox {
-    position: absolute;
-
-    z-index: 5;
+    top: 9%;
 
     left: 50%;
-    bottom: 11%;
 
     transform: translateX(-50%);
 
-    width: min(900px, 90%);
+    width: 90%;
 
     text-align: center;
 
     pointer-events: none;
-}
-
-#subtitleText {
-    display: inline-block;
-
-    background: rgba(0,0,0,.75);
-
-    padding: 10px 18px;
-
-    border-radius: 3px;
-
-    font-size: clamp(15px, 2vw, 22px);
-
-    line-height: 1.4;
-
-    text-shadow:
-        1px 1px 3px black;
 
     opacity: 0;
 
-    transition: opacity .2s;
+    transition: opacity 1.5s ease;
+
+    text-shadow:
+        0 2px 10px black,
+        0 0 20px black;
+}
+
+.episode-title span {
+    display: block;
+
+    color: #aaa;
+
+    font-size: 13px;
+
+    letter-spacing: 5px;
+
+    margin-bottom: 12px;
+}
+
+.episode-title h1 {
+    font-size: clamp(25px, 5vw, 55px);
+
+    letter-spacing: 5px;
 }
 
 
-/* =========================
-   CONTROLES
-========================= */
+/* =====================================
+   LEGENDAS
+===================================== */
 
-#controls {
+.subtitle-box {
     position: absolute;
 
-    right: 25px;
-    top: 25px;
+    left: 50%;
 
-    z-index: 10;
+    bottom: 8%;
+
+    transform: translateX(-50%);
+
+    width: min(900px, 88%);
+
+    min-height: 55px;
 
     display: flex;
 
-    gap: 8px;
+    justify-content: center;
+
+    align-items: center;
+
+    pointer-events: none;
+
+    text-align: center;
+
+    padding: 15px 25px;
+
+    opacity: 0;
+
+    transition: opacity 0.25s ease;
+
+    text-shadow:
+        0 2px 5px black,
+        0 0 10px black;
 }
 
-#controls button {
+.subtitle-box p {
+    font-size: clamp(16px, 2vw, 24px);
+
+    line-height: 1.4;
+
+    font-weight: 500;
+}
+
+
+/* =====================================
+   CONTROLES
+===================================== */
+
+.controls {
+    position: absolute;
+
+    right: 25px;
+
+    top: 25px;
+
+    display: flex;
+
+    gap: 10px;
+
+    z-index: 20;
+}
+
+.controls button {
     width: 42px;
     height: 42px;
 
+    border: 1px solid rgba(255,255,255,0.25);
+
     border-radius: 50%;
 
-    border: 1px solid rgba(255,255,255,.2);
-
-    background: rgba(0,0,0,.55);
+    background: rgba(0,0,0,0.55);
 
     color: white;
 
     cursor: pointer;
 
-    backdrop-filter: blur(5px);
-
-    transition: .2s;
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
 }
 
-#controls button:hover {
-    background: rgba(255,255,255,.15);
+.controls button:hover {
+    background: rgba(255,255,255,0.15);
+
+    transform: scale(1.05);
 }
 
 
-/* =========================
-   START
-========================= */
+/* =====================================
+   OVERLAYS
+===================================== */
 
-#startEpisode,
-#pausedScreen {
+.episode-overlay {
     position: absolute;
 
     inset: 0;
 
-    z-index: 20;
+    z-index: 10;
 
     display: flex;
 
-    justify-content: center;
     align-items: center;
+
+    justify-content: center;
 
     text-align: center;
 
     background:
         radial-gradient(
             circle,
-            rgba(20,25,32,.5),
-            rgba(0,0,0,.94)
+            rgba(0,0,0,0.55),
+            rgba(0,0,0,0.9)
         );
 }
 
-#startEpisode > div,
-#pausedScreen > div {
-    animation: appear 1s ease;
+.overlay-content {
+    width: min(700px, 90%);
+
+    animation: fadeIn 1s ease;
 }
 
-#startEpisode span {
-    font-size: 12px;
-
-    letter-spacing: 6px;
-
+.overlay-content > span {
     color: #aaa;
-}
 
-#startEpisode h1 {
-    margin: 15px 0 35px;
-
-    font-size: clamp(28px, 6vw, 65px);
+    font-size: 12px;
 
     letter-spacing: 5px;
 }
 
-#startEpisode button,
-#pausedScreen button {
-    display: block;
+.overlay-content h1 {
+    margin-top: 18px;
 
-    margin: 12px auto;
+    font-size: clamp(30px, 6vw, 70px);
 
-    min-width: 220px;
+    letter-spacing: 5px;
+}
 
-    padding: 14px 25px;
+.overlay-content p {
+    margin-top: 20px;
 
-    border: 1px solid rgba(255,255,255,.25);
+    color: #888;
 
-    background: rgba(255,255,255,.08);
+    font-size: 15px;
+}
 
-    color: white;
+.overlay-content button {
+    margin-top: 35px;
 
-    cursor: pointer;
+    min-width: 190px;
+
+    padding: 15px 25px;
+
+    border: 1px solid white;
+
+    background: white;
+
+    color: black;
 
     font-weight: bold;
 
     letter-spacing: 2px;
 
-    transition: .2s;
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
 }
 
-#startEpisode button:hover,
-#pausedScreen button:hover {
-    background: rgba(255,255,255,.18);
+.overlay-content button:hover {
+    background: transparent;
+
+    color: white;
+
+    transform: scale(1.04);
 }
 
-#startButton {
-    background: white !important;
-    color: black !important;
-}
+.secondary-button {
+    display: block;
 
+    margin-left: auto;
 
-/* =========================
-   PAUSA
-========================= */
+    margin-right: auto;
 
-#pausedScreen {
-    display: none;
-}
+    background: transparent !important;
 
-#pausedScreen h1 {
-    font-size: 50px;
+    border-color: #444 !important;
 
-    letter-spacing: 8px;
+    color: #999 !important;
 
-    margin-bottom: 30px;
+    font-size: 11px;
 }
 
 
-/* =========================
+/* =====================================
    LOADING
-========================= */
+===================================== */
 
-#loadingScreen {
-    position: absolute;
-
-    inset: 0;
-
-    z-index: 30;
-
-    background: #020304;
-
+.loading-content {
     display: flex;
 
     flex-direction: column;
 
     align-items: center;
-    justify-content: center;
 
-    gap: 20px;
+    gap: 25px;
 }
 
-.loadingLogo {
-    font-size: 40px;
-    font-weight: 900;
+.loading-content p {
+    color: #777;
 
-    letter-spacing: 10px;
+    font-size: 12px;
+
+    letter-spacing: 4px;
 }
 
-.loadingBar {
-    width: min(400px, 70%);
+.loader {
+    width: 45px;
+    height: 45px;
 
-    height: 2px;
+    border: 3px solid #333;
 
-    background: #222;
-}
+    border-top-color: white;
 
-#loadingProgress {
-    height: 100%;
+    border-radius: 50%;
 
-    width: 0%;
-
-    background: white;
-
-    transition: width .1s linear;
-}
-
-#loadingScreen p {
-    font-size: 11px;
-
-    color: #666;
-
-    letter-spacing: 3px;
+    animation: spin 0.8s linear infinite;
 }
 
 
-/* =========================
+/* =====================================
    ANIMAÇÕES
-========================= */
+===================================== */
 
-@keyframes appear {
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes fadeIn {
     from {
         opacity: 0;
-        transform: translateY(20px);
+
+        transform: translateY(15px);
     }
 
     to {
         opacity: 1;
+
         transform: translateY(0);
     }
 }
 
 
-/* =========================
+/* =====================================
    CELULAR
-========================= */
+===================================== */
 
 @media (max-width: 600px) {
 
-    #episodeMenu {
-        padding: 40px 15px;
+    .menu-content {
+        padding-top: 50px;
     }
 
-    .logo {
-        letter-spacing: 5px;
+    .logo-area {
+        margin-bottom: 40px;
     }
 
-    .subtitle {
-        letter-spacing: 2px;
-        margin-bottom: 35px;
+    .logo-area h1 {
+        letter-spacing: 6px;
+    }
+
+    .logo-subtitle {
+        font-size: 11px;
     }
 
     .episode-card {
         min-height: 110px;
+
         padding: 18px;
     }
 
     .episode-number {
         width: 65px;
-        font-size: 35px;
+
+        font-size: 11px;
     }
 
     .episode-info h2 {
-        font-size: 16px;
+        font-size: 14px;
+
+        letter-spacing: 1px;
     }
 
     .episode-info p {
         font-size: 11px;
     }
 
-    #episodeTitle {
-        top: 20px;
-        left: 20px;
+    .play-symbol,
+    .lock-symbol {
+        font-size: 18px;
     }
 
-    #episodeTitle strong {
-        font-size: 13px;
-    }
-
-    #controls {
+    .controls {
         top: 15px;
+
         right: 15px;
     }
 
-    #controls button {
+    .controls button {
         width: 38px;
         height: 38px;
+    }
+
+    .subtitle-box {
+        bottom: 7%;
+
+        width: 92%;
+    }
+
+    .subtitle-box p {
+        font-size: 15px;
     }
 }
