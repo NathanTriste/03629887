@@ -137,18 +137,32 @@ function sound(freq, duration = 0.2, type = "sine") {
    MENU
 ========================================================= */
 
-episode1.addEventListener("click", () => {
+episode1.addEventListener("click", function () {
+
+    console.log("EPISÓDIO 01 CLICADO");
 
     menu.classList.add("hidden");
     animeScreen.classList.remove("hidden");
 
     startEpisode.style.display = "flex";
-
+    pausedScreen.style.display = "none";
     loadingScreen.style.display = "none";
 
     episodeTitle.style.opacity = "0";
 
     episodeTime = 0;
+    playing = false;
+    paused = false;
+
+    startButton.textContent = "▶ COMEÇAR";
+
+    startEpisode.querySelector("span").textContent =
+        "EPISÓDIO 01";
+
+    startEpisode.querySelector("h1").textContent =
+        "O CAMINHO PARA YALHES";
+
+    drawCurrentScene();
 });
 
 
